@@ -1,0 +1,11 @@
+# build files
+dist/
+
+# macos files
+.DS_Store
+
+# node modules
+node_modules/
+
+# scratchpad
+.scratchpad/

@@ -1,0 +1,27 @@
+{
+  "name": "dufs-strata",
+  "version": "0.0.0",
+  "private": true,
+  "description": "a minimal, elegant, and configurable theme for dufs.",
+  "type": "module",
+  "author": "mcking-07",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcking-07/dufs-strata.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcking-07/dufs-strata/issues"
+  },
+  "homepage": "https://github.com/mcking-07/dufs-strata#readme",
+  "keywords": [
+    "dufs",
+    "theme",
+    "file-server",
+    "react",
+    "tailwind"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  }
+}
