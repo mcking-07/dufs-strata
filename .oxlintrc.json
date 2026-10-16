@@ -1,0 +1,130 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "import"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "es2024": true
+  },
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**"
+  ],
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "debug"
+        ]
+      }
+    ],
+    "no-empty": "error",
+    "no-const-assign": "error",
+    "no-dupe-keys": "error",
+    "no-unreachable": "error",
+    "no-unreachable-loop": "error",
+    "no-unsafe-finally": "error",
+    "no-unused-expressions": "error",
+    "no-use-before-define": "off",
+    "no-useless-call": "error",
+    "no-useless-catch": "error",
+    "no-useless-constructor": "error",
+    "no-useless-return": "error",
+    "no-throw-literal": "error",
+    "no-unneeded-ternary": [
+      "error",
+      {
+        "defaultAssignment": false
+      }
+    ],
+    "constructor-super": "error",
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "default-case-last": "error",
+    "default-param-last": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "object-shorthand": [
+      "error",
+      "always"
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "all"
+      }
+    ],
+    "prefer-destructuring": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "func-style": [
+      "error",
+      "expression"
+    ],
+    "typescript/no-explicit-any": "error",
+    "typescript/explicit-function-return-type": "off",
+    "typescript/explicit-module-boundary-types": "off",
+    "typescript/no-non-null-assertion": "warn",
+    "typescript/prefer-nullish-coalescing": "error",
+    "typescript/prefer-optional-chain": "error",
+    "typescript/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "disallowTypeAnnotations": false
+      }
+    ],
+    "typescript/no-unsafe-function-type": "off",
+    "typescript/no-floating-promises": "error",
+    "typescript/no-misused-promises": "error",
+    "typescript/await-thenable": "error",
+    "typescript/dot-notation": "error",
+    "typescript/consistent-type-definitions": [
+      "error",
+      "type"
+    ],
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "warn",
+    "react/jsx-key": "error",
+    "import/no-default-export": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "vite.config.ts"
+      ],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
+}
