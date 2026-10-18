@@ -1,0 +1,54 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm run ci
+
+      - name: check version
+        id: version_check
+        run: |
+          current_version=v$(node -p "require('./package.json').version")
+
+          if gh release view "$current_version" > /dev/null 2>&1; then
+            echo "[-] release [$current_version] already exists, skipping..."
+            echo "release=false" >> $GITHUB_OUTPUT
+          else
+            echo "[+] new version detected [$current_version], releasing..."
+            echo "version=$current_version" >> $GITHUB_OUTPUT
+            echo "release=true" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: package
+        if: ${{ steps.version_check.outputs.release == 'true' }}
+        run: |
+          mkdir -p release/strata
+          cp dist/index.html dist/config.json release/strata/
+          (cd release && zip -qr dufs-strata.zip strata)
+
+      - name: release
+        if: ${{ steps.version_check.outputs.release == 'true' }}
+        run: gh release create "${{ steps.version_check.outputs.version }}" release/dufs-strata.zip --target "$GITHUB_SHA" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
